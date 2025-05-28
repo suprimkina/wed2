@@ -1,0 +1,40 @@
+{% extends 'app1/base_task.html' %}
+
+{% load static %}
+
+{% block extra_links %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app1/css/sem3/task5.css' %}">
+    <script src="{% static 'app1/js/sem3/task5.js' %}" defer></script>
+{% endblock %}
+
+{% block page_title %}
+    Задание 5
+{% endblock %}
+
+{% block header_title %}
+    Задание 5
+{% endblock %}
+
+{% block content %}
+    <div class="calculator">
+            <h1 class="">Калькулятор товаров</h1>
+
+            <label for="products" class="">Наименования товаров</label>
+            <select id="products" name="products" required>
+                <option value="249.99">Пельмени - 249.99 руб.</option>
+                <option value="69.99">Сметана - 69.99 руб.</option>
+                <option value="149.99">Брусничный соус - 149.99 руб.</option>
+                <option value="69.99">Добрый кола - 69.99 руб.</option>
+                <option value="99.99">Малосольные огурцы - 99.99 руб.</option>
+                <option value="5.99">Пакет - 5.99 руб.</option>
+            </select>
+
+            <label class="" for="number">Количество выбранного товара:</label>
+            <input type="number" id="number" min="0" required>
+
+            <input type="button" id="button" onclick="calculate_price()" value="Подсчитать стоимость">
+
+            <label for="result" class="">Стоимость заказа:</label>
+            <div id="result" class=""></div>
+        </div>
+{% endblock %}

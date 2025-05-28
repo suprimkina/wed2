@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block page_title %}
+    Главная страница
+{% endblock %}
+
+{% block header_title %}
+    Главная страница
+{% endblock %}
+
+{% block content %}
+    <div class="tasks">
+        <h1>Список приложений:</h1>
+        <div class="apps-list">
+            {% for app in app_names_urls %}
+                <a class="link-to-task" href="{% url app.url %}">
+                    Приложение "{{ app.name }}"
+                </a>
+            {% endfor %}
+            {% for name in all_names %}
+                {{ name }}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

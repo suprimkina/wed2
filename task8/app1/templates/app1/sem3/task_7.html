@@ -1,0 +1,30 @@
+{% extends 'app1/base_task.html' %}
+
+{% load static %}
+
+{% block extra_links %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app1/css/sem3/task7.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app1/css/sem3/slick-theme.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'app1/css/sem3/slick.css' %}"/>
+    <script src="{% static 'app1/js/sem3/jquery.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'app1/js/sem3/slick.js' %}" defer></script>
+    <script src="{% static 'app1/js/sem3/task7.js' %}" defer></script>
+{% endblock %}
+
+{% block page_title %}
+    Задание 7
+{% endblock %}
+
+{% block header_title %}
+    Задание 7
+{% endblock %}
+
+{% block content %}
+    <div class="gallery">
+        {% for jpg_name in jpg_names %}
+            <div>
+                <img class="for-gallery" src="{% static jpg_name %}" alt="{{ jpg_name }}">
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

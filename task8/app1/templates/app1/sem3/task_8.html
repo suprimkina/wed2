@@ -1,0 +1,78 @@
+{% extends 'app1/base_task.html' %}
+
+{% load static %}
+
+{% block extra_links %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app1/css/sem3/task8.css' %}">
+    <script src="{% static 'app1/js/sem3/jquery.js' %}" defer></script>
+    <script src="{% static 'app1/js/sem3/task8.js' %}" defer></script>
+{% endblock %}
+
+{% block page_title %}
+    Задание 8
+{% endblock %}
+
+{% block header_title %}
+    Задание 8
+{% endblock %}
+
+{% block extra_body %}
+    <div id="pop-up">
+        <form id="form-back"
+              class="formcarryForm"
+              action="https://formcarry.com/s/3tEO8VQIzT"
+              enctype="multipart/form-data">
+            <div id="close-pop-up">
+                <p id="for-x">X</p>
+            </div>
+            <h1 id="h1-form" class="black">Форма</h1>
+
+            <div id="if-error">
+                <p>Неправильный ввод номера телефона</p>
+            </div>
+
+            <div class="div-input">
+                <label id="for-fio" class="black label-center" for="fio">ФИО</label>
+                <input name="fio" class="size-input" id="fio" type="text" required>
+            </div>
+
+            <div class="div-input">
+                <label id="for-email" class="black label-center" for="email">Email</label>
+                <input name="email" class="size-input" id="email" type="email" required>
+            </div>
+
+            <div class="div-input">
+                <label id="for-telephone" class="black label-center" for="telephone">Телефон</label>
+                <input name="telephone" class="size-input" id="telephone" type="tel" required>
+            </div>
+
+            <div class="div-input">
+                <label id="for-organization" class="black label-center" for="organization">Организация</label>
+                <input name="organization" class="size-input" id="organization" type="text" required>
+            </div>
+
+            <div class="div-input">
+                <label id="for-message" class="black label-center" for="message">Сообщение</label>
+                <textarea name="message" id="message" required></textarea>
+            </div>
+
+            <div>
+                <input id="checkbox" type="checkbox" required>
+                <label id="for-checkbox" class="black" for="checkbox">Согласие на обработку персональных данных</label>
+            </div>
+
+            <div id="div-with-submit">
+                <input id="submit-request" class="div_button" type="submit" value="Отправить данные">
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
+
+{% block content %}
+    <div id="to-pop-up">
+        <h1 class="black center-text">Нажмите кнопку, если хотите заполнить форму</h1>
+        <img id="img-dog" src="{% static 'app1/media/sem3/dog-with-butterfly.jpg' %}" alt="Собака с бабочкой">
+        <div class="div_button" id="button-to-pop-up">Хочу заполнить форму</div>
+    </div>
+{% endblock %}

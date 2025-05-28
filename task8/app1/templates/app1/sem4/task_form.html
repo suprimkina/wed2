@@ -1,0 +1,67 @@
+{% extends 'app1/base_task.html' %}
+{% load  static %}
+{% load custom_filters %}
+
+{% block extra_links %}
+    <link rel="stylesheet" href="{% static 'app1/css/sem4/form.css' %}">
+{% endblock %}
+
+{% block page_title %}
+    Форма
+{% endblock %}
+
+{% block header_title %}
+    Форма
+{% endblock %}
+
+{% block content %}
+    <div class="tasks" id="div_form">
+        <form method="post" id="form">
+            {% csrf_token %}
+            <h1 id="h1-form" class="black">Форма</h1>
+            {% with combined_errors=form.non_fields_errors|concat_lists:form.errors.values %}
+                {% if combined_errors %}
+                    <div id="div-result" class="div-result">
+                        {% for error in combined_errors %}
+                            <div class="error-color label-center">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% elif messages%}
+                    {% for message in messages %}
+                        <div id="div-result" class="div-result">
+                            <div class="success-color label-center">
+                                {{ message}}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            {% for field in form %}
+                {% if field.errors %}
+                    <div class="div-error div-input">
+                {% else %}
+                    <div class="div-input">
+                {% endif %}
+            {{ field.label_tag }}
+            {% if field.name == 'sex' %}
+                <div class="sex-radios">
+                    {{ field }}
+                </div>
+            {% else %}
+                {{ field }}
+            {% endif %}
+            </div>
+            {% endfor %}
+            <div class="label-center">
+                <input required class="default_input" id="contract" type="checkbox" name="contract" value="1">
+                <label id="for-contract" class="black default_label" for="contract">С контрактом ознакомлен</label>
+            </div>
+
+            <div id="div-with-submit">
+                <input id="submit-request" class="div_button" type="submit" value="Сохранить">
+            </div>
+        </form>
+    </div>
+{% endblock %}

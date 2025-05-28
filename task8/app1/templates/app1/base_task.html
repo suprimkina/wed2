@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block aside %}
+    <nav class="aside-link">
+        <a href="{% url "app1:index" %}"  class="">Выбор семестра</a>
+    </nav>
+    <nav class="aside-link">
+        <a href="{% url 'app1:semester' semester_number %}"  class="">Выбор задания семестра</a>
+    </nav>
+{% endblock %}

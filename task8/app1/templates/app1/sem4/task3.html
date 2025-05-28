@@ -1,0 +1,85 @@
+{% extends 'app1/base_task.html' %}
+{% load  static %}
+
+{% block extra_links %}
+    <link rel="stylesheet" href="{% static 'app1/css/sem4/form.css' %}">
+{% endblock %}
+
+{% block page_title %}
+    Задание 3
+{% endblock %}
+
+{% block header_title %}
+    Задание 3
+{% endblock %}
+
+{% block content %}
+    <div class="tasks" id="div_form">
+        <form method="post" id="form">
+            <h1 id="h1-form" class="black">Форма</h1>
+            <div id="div-result">
+            </div>
+            <div class="div-input">
+                <label id="for-fio" class="black label-center" for="fio">ФИО</label>
+                <input name="fio" class="size-input" id="fio" type="text">
+            </div>
+
+            <div class="div-input">
+                <label id="for-telephone" class="black label-center" for="telephone">Телефон</label>
+                <input name="telephone" class="size-input" id="telephone" type="tel">
+            </div>
+
+            <div class="div-input">
+                <label id="for-email" class="black label-center" for="email">Email</label>
+                <input name="email" class="size-input" id="email" type="email">
+            </div>
+
+            <div class="div-input">
+                <label id="for-bday" class="black label-center" for="bday">Дата рождения</label>
+                <input name="bday" class="size-input" id="bday" type="date">
+            </div>
+
+            <div class="div-input">
+                <label id="for-organization" class="black label-center">Пол</label>
+                <div id="sex-radios" class="label-center">
+                    <input name="sex" class="" id="sex-man" type="radio" value="man">
+                    <label id="for-sex-man" class="black label-center">Мужской</label>
+
+                    <input name="sex" class="" id="sex-woman" type="radio" value="woman">
+                    <label id="for-sex-woman" class="black label-center">Женский</label>
+                </div>
+            </div>
+
+            <div class="div-input">
+                <label id="for-prog-lang" class="black label-center">Любимый язык программирования</label>
+                <select name="langs[]" multiple="multiple" id="prog-lang" class="size-input">
+                    <option value="0">Pascal</option>
+                    <option value="1">C</option>
+                    <option value="2">C++</option>
+                    <option value="3">JavaScript</option>
+                    <option value="4">PHP</option>
+                    <option value="5">Python</option>
+                    <option value="6">Java</option>
+                    <option value="7">Haskel</option>
+                    <option value="8">Clojure</option>
+                    <option value="9">Prolog</option>
+                    <option value="10">Scala</option>
+                </select>
+            </div>
+
+            <div class="div-input">
+                <label id="for-biography" class="black" for="biography">Биография</label>
+                <textarea class="size-input" id="biography" name="biography"></textarea>
+            </div>
+
+            <div class="label-center">
+                <input id="contract" type="checkbox" name="contract" value="1">
+                <label id="for-contract" class="black" for="contract">С контрактом ознакомлен</label>
+            </div>
+
+            <div id="div-with-submit">
+                <input id="submit-request" class="div_button" type="submit" value="Сохранить">
+            </div>
+        </form>
+    </div>
+{% endblock %}

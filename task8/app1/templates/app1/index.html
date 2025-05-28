@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block page_title %}
+    Список семестров
+{% endblock %}
+
+{% block header_title %}
+    Список семестров
+{% endblock %}
+
+{% block aside %}
+    <nav class="aside-link">
+        <a href="{% url 'app1:jquery_test' %}">Тест Jquery</a>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <div class="tasks">
+        <h1>Семестры:</h1>
+        <div class="tasks-list">
+            {% for semester_number in semester_numbers %}
+                <a class="link-to-task"
+                   href="{% url 'app1:semester' semester_number %}"
+                >Семестр {{ semester_number }}</a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
