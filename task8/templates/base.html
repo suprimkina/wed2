@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+    {% block extra_links %}
+    {% endblock %}
+    <title>
+        {% block page_title %}
+        {% endblock %}
+    </title>
+</head>
+
+<body>
+{% block extra_body %}
+
+{% endblock %}
+<header>
+    <nav class="logo-nav">
+        <img class="header-logo" src="{% static 'media/logo.png' %}" alt="Logo">
+    </nav>
+    <nav class="header-info">
+        <h2 class="header-title">$$$ website?</h2>
+        <h3 class="header-task">
+            {% block header_title %}
+                {#                    В дочернем классе здесь будет название страницы#}
+            {% endblock %}
+        </h3>
+    </nav>
+</header>
+
+<aside>
+    <nav class="aside-link">
+        <a href="{% url 'home:home' %}" class="">Главная страница</a>
+    </nav>
+    <nav class="aside-link">
+        <a href="{% url 'account:profile' %}" class="">Профиль</a>
+    </nav>
+    {% if user.is_superuser %}
+        <nav class="aside-link">
+            <a href="{% url 'admin:index' %}" class="">Админ-панель</a>
+        </nav>
+    {% endif %}
+    {% block aside %}
+        {#                    В дочернем классе здесь ссылки aside страницы#}
+    {% endblock %}
+</aside>
+
+<main>
+    {% block content %}
+        {#            В дочернем шаблоне здесь будет сама задача#}
+    {% endblock %}
+</main>
+
+<footer>
+    <p class="text_in_footer">created by</p>
+    <h3 class="text_in_footer">Анна Супрун</h3>
+</footer>
+</body>
+
+</html>
