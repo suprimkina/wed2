@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block aside %}
+{% endblock %}
+
+{% block page_title %}
+    Профиль
+{% endblock %}
+
+{% block header_title %}
+    Профиль
+{% endblock %}
+
+{% block content %}
+    <div class="tasks">
+        <h1 id="h1-form" class="black">Профиль:</h1>
+        <div>
+            {% if profile.avatar %}
+                <img src="{{ profile.avatar.url }}" width="100" height="100" alt="Profile Avatar">
+            {% else %}
+                <img src="{% static 'media/default_avatar.png' %}" alt="Default Avatar" width="100" height="100">
+            {% endif %}
+        </div>
+        <div>
+            Имя пользователя: {{ profile.user }}
+        </div>
+        {% if profile.birthday is not None %}
+            <div>
+                День рождения: {{ profile.birthday }}
+            </div>
+        {% endif %}
+        {% if profile.bio != "" %}
+            <div>
+                О себе:
+                <br>
+                {{ profile.bio }}
+            </div>
+        {% endif %}
+        {#        {% for field in profile %}#}
+        {#            {{ field.label }}#}
+        {#            {{ field }}#}
+        {#        {% endfor %}#}
+        <form method="get" action="{% url 'account:profile_edit' %}">
+            {% csrf_token %}
+            <div id="div-with-submit">
+                <input class="div_button" type="submit" value="Редактировать данные">
+            </div>
+        </form>
+        <form method="post" action="{% url 'account:log_out' %}">
+            {% csrf_token %}
+            <div id="div-with-submit">
+                <input id="submit-request" class="div_button" type="submit" value="Выйти из аккаунта">
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load custom_filters %}
+
+{% block extra_links %}
+    <link rel="stylesheet" href="{% static 'account/css/form.css' %}">
+{% endblock %}
+
+{% block aside %}
+{% endblock %}
+
+{% block page_title %}
+    Вход
+{% endblock %}
+
+{% block header_title %}
+    Вход
+{% endblock %}
+
+
+{% block content %}
+    <div class="tasks" id="div_form">
+        <form method="POST">
+            {% csrf_token %}
+            <h1 id="h1-form" class="black">
+                <a href="{% url 'account:sign_up' %}">Регистрация</a>/Вход
+            </h1>
+            {% with combined_errors=form.non_fields_errors|concat_lists:form.errors.values %}
+                {% if combined_errors %}
+                    <div id="div-result" class="div-result">
+                        {% for error in combined_errors %}
+                            <div class="error-color label-center">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            {% if form.username.errors %}
+                <div class="div-error div-input">
+            {% else %}
+                <div class="div-input">
+            {% endif %}
+            {{ form.username.label_tag }}
+            {{ form.username }}
+            </div>
+
+            {% if form.password.errors %}
+                <div class="div-error div-input">
+            {% else %}
+                <div class="div-input">
+            {% endif %}
+                {{ form.password.label_tag }}
+                {{ form.password }}
+            </div>
+
+            <div id="div-with-submit">
+                <input id="submit-request" class="div_button" type="submit" value="Войти">
+            </div>
+        </form>
+    </div>
+{% endblock %}

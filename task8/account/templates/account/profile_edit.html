@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load custom_filters %}
+
+{% block extra_links %}
+    <link rel="stylesheet" href="{% static 'account/css/form.css' %}">
+{% endblock %}
+
+{% block aside %}
+{% endblock %}
+
+{% block page_title %}
+    Редактирование данных
+{% endblock %}
+
+{% block header_title %}
+    Редактирование данных
+{% endblock %}
+
+{% block content %}
+    <div class="tasks">
+        <h1 id="h1-form" class="black">Редактирование данных:</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% with combined_errors=form.non_fields_errors|concat_lists:form.errors.values %}
+                {% if combined_errors %}
+                    <div id="div-result" class="div-result">
+                        {% for error in combined_errors %}
+                            <div class="error-color label-center">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            {% for field in form %}
+                {% if field.errors %}
+                    <div class="div-error div-input">
+                {% else %}
+                    <div class="div-input">
+                {% endif %}
+            {{ field.label_tag }}
+            {{ field }}
+            </div>
+            {% endfor %}
+            <div id="div-with-submit">
+                <input id="submit-request" class="div_button" type="submit" value="Изменить">
+            </div>
+        </form>
+    </div>
+{% endblock %}

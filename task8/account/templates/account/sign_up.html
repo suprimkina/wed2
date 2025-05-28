@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load custom_filters %}
+
+{% block extra_links %}
+    <link rel="stylesheet" href="{% static 'account/css/form.css' %}">
+{% endblock %}
+
+{% block aside %}
+{% endblock %}
+
+{% block page_title %}
+    Регистрация
+{% endblock %}
+
+{% block header_title %}
+    Регистрация
+{% endblock %}
+
+{% block content %}
+    <div class="tasks" id="div_form">
+        <form method="POST">
+            {% csrf_token %}
+            <h1 id="h1-form" class="black">
+                Регистрация/<a href="{% url 'account:sign_in' %}">Вход</a>
+            </h1>
+            {% with combined_errors=form.non_fields_errors|concat_lists:form.errors.values %}
+                {% if combined_errors %}
+                    <div id="div-result" class="div-result">
+                        {% for error in combined_errors %}
+                            <div class="error-color label-center">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            {% if form.username.errors %}
+                <div class="div-error div-input">
+            {% else %}
+                <div class="div-input">
+            {% endif %}
+            {{ form.username.label_tag }}
+            {{ form.username }}
+            </div>
+            {% if form.password1.errors %}
+                <div class="div-error div-input">
+            {% else %}
+                <div class="div-input">
+            {% endif %}
+                {{ form.password1.label_tag }}
+                {{ form.password1 }}
+            </div>
+            {% if form.password2.errors %}
+                <div class="div-error div-input">
+            {% else %}
+                <div class="div-input">
+            {% endif %}
+                {{ form.password2.label_tag }}
+                {{ form.password2 }}
+            </div>
+            <div id="div-with-submit">
+                <input id="submit-request" class="div_button" type="submit" value="Зарегистрироваться">
+            </div>
+        </form>
+    </div>
+{% endblock %}
